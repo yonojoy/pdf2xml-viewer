@@ -40,7 +40,8 @@ July 2016, Markus Konrad <markus.konrad@wzb.eu> / Berlin Social Science Center (
 
     rect {
         fill: none;
-        stroke: red;
+        stroke: black;
+        stroke-opacity: 0.1;
     }
 
     text {
@@ -86,7 +87,7 @@ July 2016, Markus Konrad <markus.konrad@wzb.eu> / Berlin Social Science Center (
         stroke-opacity: 0.75;
     }
 </style>
-<body>
+<body onload="loadXMLFile()">
 
 <script src="d3.js" charset="utf-8"></script>
 
@@ -220,7 +221,8 @@ July 2016, Markus Konrad <markus.konrad@wzb.eu> / Berlin Social Science Center (
 
         console.log("loading XML file '" + xmlfile + "'");
         document.getElementById('xmlfile').value = xmlfile;
-        d3.xml(xmlfile, 'application/xml', function (err, d) {
+        //avoid cached data with + '?' + Math.floor(Math.random() * 1000)
+        d3.xml(xmlfile + '?' + Math.floor(Math.random() * 1000), 'application/xml', function (err, d) {
             xmldoc = d;
             
             if (xmldoc === 'undefined') {
@@ -456,13 +458,14 @@ July 2016, Markus Konrad <markus.konrad@wzb.eu> / Berlin Social Science Center (
         curBgImageOpacity = parseInt(elem.value) / 100;
         d3.select('#bgimage image').style('opacity', curBgImageOpacity);
     }
+    
 </script>
 
 <div id="control">
     <fieldset>
         <div style="width:33%; text-align:left; float: left">
           <label for="xmlfile">XML File:</label>
-          <input id="xmlfile" name="xmlfile" type="text" required autofocus>
+          <input id="xmlfile" value="Temp.xml" name="xmlfile" type="text" required autofocus>
           <input type="submit" value="Load" onclick="loadXMLFile()" style="margin-right: 5em">
           <br>
           <label for="gridfile">Grid File:</label>

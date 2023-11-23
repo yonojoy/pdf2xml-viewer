@@ -1,3 +1,23 @@
+# pdf2xml-viewer - Hack
+
+This is a quick hack to use the [pdf2xml-viewer](https://github.com/WZBSocialScienceCenter/pdf2xml-viewer) to display a XML file generated in *pdf2xml* format (via [PdfToHtml](https://github.com/dsidavis/pdftohtml)) rendered in the browser.
+
+## Howto
+* Install Python 2 and Chrome
+* Checkout the branch `DirectView` of this repository to `C:\GitHubProjects\pdf2xml-viewer`
+* run `_DisplayPdfXmlFile.bat "C:\Data\a_pdf2xml_file_to_display.xml"` 
+
+## Internals
+The original `pdf2xml-viewer` uses `d3.js` to render the text contained in the xml file. The code is in `index.html` which is displayed via a web server. The web server is provided via python (in `_DisplayPdfXmlFile.bat`).
+
+## Why
+We use the XML representation of PDF files in our unit tests. But sometimes it is necessary to visually compare old and new XML file.
+
+
+---
+
+Original README below:
+
 # pdf2xml-viewer - A simple viewer and inspection tool for text boxes in PDF documents
 
 July 2016 / Feb. 2017, Markus Konrad <markus.konrad@wzb.eu> / <post@mkonrad.net> / [Berlin Social Science Center](https://www.wzb.eu/en)
